@@ -44,4 +44,4 @@ python e91_simulation.py   # simulations: results/ideal.json, eve.json, eve30.js
 python e91_hardware.py     # new run on IBM hardware: results/hardware.json
 ```
 
-Each run of `e91_hardware.py` submits a new job, which may wait in the IBM queue, and also saves a drawing of the transpiled circuit to `../circuit.svg`.
+Each run of `e91_hardware.py` submits a new job, which may wait in the IBM queue, and also saves a drawing of the transpiled circuit to `results/circuit.svg`.

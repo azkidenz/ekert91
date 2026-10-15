@@ -34,7 +34,8 @@ def main():
     errors = [backend.target["measure"][(q,)].error for q in qubits]
     print(f"Physical qubits (Alice, Bob): {qubits}, reading error: "
           f"{100 * errors[0]:.2f}% e {100 * errors[1]:.2f}%")
-    circuits[0].draw("mpl", idle_wires=False, filename="../circuit.svg")
+    os.makedirs(OUT_DIR, exist_ok=True)
+    circuits[0].draw("mpl", idle_wires=False, filename=f"{OUT_DIR}/circuit.svg")
 
     sampler = SamplerV2(mode=backend)
     sampler.options.dynamical_decoupling.enable = True   # riduce la decoerenza
@@ -47,7 +48,6 @@ def main():
 
     r.update(backend=backend.name, date=str(datetime.date.today()),
              qubits=[int(q) for q in qubits], readout_errors=[float(x) for x in errors])
-    os.makedirs(OUT_DIR, exist_ok=True)
     with open(f"{OUT_DIR}/hardware.json", "w") as f:
         json.dump(r, f, indent=2)
     print("Saved results")
