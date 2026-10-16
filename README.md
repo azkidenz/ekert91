@@ -10,7 +10,7 @@ The code simulates the protocol, runs it on a real IBM Quantum processor and dec
 - Estimates the CHSH parameter S, with its standard deviation, and the QBER on the raw key.
 - Computes the device-independent key rate (Acín et al., 2007) with a conservative value of S (|S| − 3σ) and accepts or aborts the key.
 - Simulates an intercept-and-resend eavesdropper on all pairs or on a fraction p of them, showing that |S| > 2 alone is not enough to guarantee a secure key.
-- Runs the same circuits on the least busy IBM Quantum processor available to your account.
+- Runs the same circuits on the least busy IBM Quantum processor available to your account, both without Eve and with Eve attacking every pair through a mid-circuit measurement.
 
 Error correction and privacy amplification are not implemented: the protocol stops at the accept/abort decision.
 
@@ -20,7 +20,7 @@ Error correction and privacy amplification are not implemented: the protocol sto
 |---|---|
 | `e91_core.py` | Shared code: circuits, random basis choices, counting of outcomes, CHSH test, QBER, key rate and decision |
 | `e91_simulation.py` | Runs all the simulations with Qiskit Aer (ideal channel, full attack, attack on 30% of the pairs, partial-attack sweep) |
-| `e91_hardware.py` | Runs a new experiment on the least busy IBM Quantum processor |
+| `e91_hardware.py` | Runs a new experiment on the least busy IBM Quantum processor, without and with Eve, in a single job |
 | `results/` | Output of the scripts (JSON, CSV and SVG files) |
 
 ## Requirements
